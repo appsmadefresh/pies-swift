@@ -29,6 +29,13 @@
 			remoteGlobalIDString = E170EA73270E4646007B672B;
 			remoteInfo = PiesDemo;
 		};
+		E170EAB3270E4759007B672B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E170EAAF270E4758007B672B /* PiesDemo-SwiftUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E170EA9E270E4757007B672B;
+			remoteInfo = "PiesDemo-SwiftUI";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +46,7 @@
 		E170EA43270E4040007B672B /* PiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiesTests.swift; sourceTree = "<group>"; };
 		E170EA4E270E414E007B672B /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
 		E170EA8A270E4647007B672B /* PiesDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PiesDemo.xcodeproj; path = PiesDemo/PiesDemo.xcodeproj; sourceTree = "<group>"; };
+		E170EAAF270E4758007B672B /* PiesDemo-SwiftUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "PiesDemo-SwiftUI.xcodeproj"; path = "PiesDemo-SwiftUI/PiesDemo-SwiftUI.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +71,7 @@
 		E170EA2A270E4040007B672B = {
 			isa = PBXGroup;
 			children = (
+				E170EAAF270E4758007B672B /* PiesDemo-SwiftUI.xcodeproj */,
 				E170EA8A270E4647007B672B /* PiesDemo.xcodeproj */,
 				E170EA36270E4040007B672B /* Pies */,
 				E170EA42270E4040007B672B /* PiesTests */,
@@ -101,6 +110,14 @@
 			isa = PBXGroup;
 			children = (
 				E170EA8F270E4648007B672B /* PiesDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E170EAB0270E4758007B672B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E170EAB4270E4759007B672B /* PiesDemo-SwiftUI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -186,6 +203,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = E170EAB0270E4758007B672B /* Products */;
+					ProjectRef = E170EAAF270E4758007B672B /* PiesDemo-SwiftUI.xcodeproj */;
+				},
+				{
 					ProductGroup = E170EA8B270E4647007B672B /* Products */;
 					ProjectRef = E170EA8A270E4647007B672B /* PiesDemo.xcodeproj */;
 				},
@@ -204,6 +225,13 @@
 			fileType = wrapper.application;
 			path = PiesDemo.app;
 			remoteRef = E170EA8E270E4648007B672B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E170EAB4270E4759007B672B /* PiesDemo-SwiftUI.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "PiesDemo-SwiftUI.app";
+			remoteRef = E170EAB3270E4759007B672B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -306,7 +334,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -364,7 +392,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -389,6 +417,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -417,6 +446,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
