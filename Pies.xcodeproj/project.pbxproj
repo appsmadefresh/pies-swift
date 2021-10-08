@@ -12,6 +12,7 @@
 		E170EA44270E4040007B672B /* PiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E170EA43270E4040007B672B /* PiesTests.swift */; };
 		E170EA45270E4040007B672B /* Pies.h in Headers */ = {isa = PBXBuildFile; fileRef = E170EA37270E4040007B672B /* Pies.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E170EA4F270E414E007B672B /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E170EA4E270E414E007B672B /* EventType.swift */; };
+		E1B3B53D2710F8F400C76A29 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B53C2710F8F400C76A29 /* Keychain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		E170EA4E270E414E007B672B /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
 		E170EA8A270E4647007B672B /* PiesDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PiesDemo.xcodeproj; path = PiesDemo/PiesDemo.xcodeproj; sourceTree = "<group>"; };
 		E170EAAF270E4758007B672B /* PiesDemo-SwiftUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "PiesDemo-SwiftUI.xcodeproj"; path = "PiesDemo-SwiftUI/PiesDemo-SwiftUI.xcodeproj"; sourceTree = "<group>"; };
+		E1B3B53C2710F8F400C76A29 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				E170EA37270E4040007B672B /* Pies.h */,
 				E170EA38270E4040007B672B /* Pies.docc */,
 				E170EA4E270E414E007B672B /* EventType.swift */,
+				E1B3B53C2710F8F400C76A29 /* Keychain.swift */,
 			);
 			path = Pies;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			files = (
 				E170EA4F270E414E007B672B /* EventType.swift in Sources */,
 				E170EA39270E4040007B672B /* Pies.docc in Sources */,
+				E1B3B53D2710F8F400C76A29 /* Keychain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
