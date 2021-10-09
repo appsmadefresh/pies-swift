@@ -6,14 +6,13 @@
 //
 
 import UIKit
+import Pies
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        Pies.configure(appId: "1234", apiKey: "123456789")
         return true
     }
 
