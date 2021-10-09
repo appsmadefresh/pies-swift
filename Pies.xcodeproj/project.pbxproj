@@ -14,6 +14,12 @@
 		E170EA4F270E414E007B672B /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E170EA4E270E414E007B672B /* EventType.swift */; };
 		E1B3B53D2710F8F400C76A29 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B53C2710F8F400C76A29 /* Keychain.swift */; };
 		E1B3B5412710FA8F00C76A29 /* APIQueues.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B5402710FA8F00C76A29 /* APIQueues.swift */; };
+		E1B3B5432710FB6600C76A29 /* APIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B5422710FB6600C76A29 /* APIBuilder.swift */; };
+		E1B3B546271109D400C76A29 /* APIField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B545271109D400C76A29 /* APIField.swift */; };
+		E1B3B54827110E9000C76A29 /* PiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B54727110E9000C76A29 /* PiesManager.swift */; };
+		E1B3B54A2711102B00C76A29 /* APIOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B5492711102B00C76A29 /* APIOperation.swift */; };
+		E1B3B54C271110D300C76A29 /* KeychainKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B54B271110D300C76A29 /* KeychainKey.swift */; };
+		E1B3B54E271110F100C76A29 /* Pies.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B54D271110F100C76A29 /* Pies.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +57,12 @@
 		E170EAAF270E4758007B672B /* PiesDemo-SwiftUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "PiesDemo-SwiftUI.xcodeproj"; path = "PiesDemo-SwiftUI/PiesDemo-SwiftUI.xcodeproj"; sourceTree = "<group>"; };
 		E1B3B53C2710F8F400C76A29 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		E1B3B5402710FA8F00C76A29 /* APIQueues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQueues.swift; sourceTree = "<group>"; };
+		E1B3B5422710FB6600C76A29 /* APIBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBuilder.swift; sourceTree = "<group>"; };
+		E1B3B545271109D400C76A29 /* APIField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIField.swift; sourceTree = "<group>"; };
+		E1B3B54727110E9000C76A29 /* PiesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiesManager.swift; sourceTree = "<group>"; };
+		E1B3B5492711102B00C76A29 /* APIOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOperation.swift; sourceTree = "<group>"; };
+		E1B3B54B271110D300C76A29 /* KeychainKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKey.swift; sourceTree = "<group>"; };
+		E1B3B54D271110F100C76A29 /* Pies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pies.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,9 +107,12 @@
 		E170EA36270E4040007B672B /* Pies */ = {
 			isa = PBXGroup;
 			children = (
-				E1B3B5402710FA8F00C76A29 /* APIQueues.swift */,
+				E1B3B54D271110F100C76A29 /* Pies.swift */,
+				E1B3B54727110E9000C76A29 /* PiesManager.swift */,
+				E1B3B5442711097B00C76A29 /* API */,
 				E170EA4E270E414E007B672B /* EventType.swift */,
 				E1B3B53C2710F8F400C76A29 /* Keychain.swift */,
+				E1B3B54B271110D300C76A29 /* KeychainKey.swift */,
 				E170EA37270E4040007B672B /* Pies.h */,
 				E170EA38270E4040007B672B /* Pies.docc */,
 			);
@@ -126,6 +141,17 @@
 				E170EAB4270E4759007B672B /* PiesDemo-SwiftUI.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E1B3B5442711097B00C76A29 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				E1B3B5422710FB6600C76A29 /* APIBuilder.swift */,
+				E1B3B545271109D400C76A29 /* APIField.swift */,
+				E1B3B5492711102B00C76A29 /* APIOperation.swift */,
+				E1B3B5402710FA8F00C76A29 /* APIQueues.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,9 +290,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1B3B54A2711102B00C76A29 /* APIOperation.swift in Sources */,
+				E1B3B54827110E9000C76A29 /* PiesManager.swift in Sources */,
+				E1B3B54C271110D300C76A29 /* KeychainKey.swift in Sources */,
+				E1B3B546271109D400C76A29 /* APIField.swift in Sources */,
 				E1B3B5412710FA8F00C76A29 /* APIQueues.swift in Sources */,
 				E170EA4F270E414E007B672B /* EventType.swift in Sources */,
 				E170EA39270E4040007B672B /* Pies.docc in Sources */,
+				E1B3B5432710FB6600C76A29 /* APIBuilder.swift in Sources */,
+				E1B3B54E271110F100C76A29 /* Pies.swift in Sources */,
 				E1B3B53D2710F8F400C76A29 /* Keychain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

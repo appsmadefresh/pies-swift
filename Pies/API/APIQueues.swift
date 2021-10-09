@@ -8,7 +8,7 @@
 
 import Foundation
 
-class APIQueues {
+final class APIQueues {
     static let shared = APIQueues()
     
     lazy var defaultQueue: OperationQueue = {

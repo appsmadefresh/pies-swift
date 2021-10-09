@@ -7,9 +7,9 @@
 
 import Foundation
 
-public enum EventType {
-    public static let newInstall = "New Install"
-    public static let sessionStart = "Session Start"
-    public static let sessionEnd = "Session End"
-    public static let inAppPurchase = "In App Purchase"
+public enum EventType: String {
+    case newInstall
+    case sessionStart
+    case sessionEnd
+    case inAppPurchase
 }
