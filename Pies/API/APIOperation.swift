@@ -66,7 +66,7 @@ final class APIOperation: Operation {
             }
             
             guard response != nil else {
-                print("No API Response")
+                PiesLogger.shared.logError(message: "No API Response")
                 self.completeAction(nil)
                 self.completeOperation()
                 return

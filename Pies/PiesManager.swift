@@ -16,14 +16,16 @@ final class PiesManager {
         return keychain
     }()
     
-    // TODO: add logLevel
-    func configure(appId: String, apiKey: String) {
-        //logLevel = logLevel
+    func configure(appId: String, apiKey: String, logLevel: PiesLogLevel = .info) {
+        
+        PiesLogger.shared.level = logLevel
         
         keychain.set(appId, forKey: KeychainKey.appId)
         keychain.set(apiKey, forKey: KeychainKey.apiKey)
         
         checkForNewInstall()
+        
+        PiesLogger.shared.logInfo(message: "Initialized.")
     }
     
     func startListening() {
@@ -35,17 +37,14 @@ final class PiesManager {
         guard let appId = keychain.get(KeychainKey.appId),
             let apiKey = keychain.get(KeychainKey.apiKey),
             let deviceId = keychain.get(KeychainKey.deviceId) else {
-            print("something failed")
+                PiesLogger.shared.logError(message: "Failed to track active session.")
             return
         }
         
         guard let request = APIBuilder.requestForSessionStart(appId: appId, apiKey: apiKey, deviceId: deviceId) else { return }
         
-        let operation = APIOperation(request: request) { (data) in
-            print("Do something here if desired.")
-        }
+        let operation = APIOperation(request: request) { _ in }
         
-        print("add operation")
         APIQueues.shared.defaultQueue.addOperation(operation)
     }
     
@@ -76,9 +75,7 @@ final class PiesManager {
         
         guard let request = APIBuilder.requestForNewInstall(appId: appId, apiKey: apiKey, deviceId: deviceId) else { return }
         
-        let operation = APIOperation(request: request) { (data) in
-            print("Do something here if desired.")
-        }
+        let operation = APIOperation(request: request) { _ in }
         APIQueues.shared.defaultQueue.addOperation(operation)
     }
 }

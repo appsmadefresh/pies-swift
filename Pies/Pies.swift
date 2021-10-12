@@ -10,12 +10,11 @@ import Foundation
 public class Pies {
     
     /// Configure Pies with your appId and apiKey that can be found in your email.
-    // TODO: add logLevel
-    public static func configure(appId: String, apiKey: String) {
+    public static func configure(appId: String, apiKey: String, logLevel: PiesLogLevel = .info) {
         if appId.isEmpty || apiKey.isEmpty {
             fatalError("You must provide a valid appId and valid apiKey.")
         }
-        PiesManager.shared.configure(appId: appId, apiKey: apiKey)
+        PiesManager.shared.configure(appId: appId, apiKey: apiKey, logLevel: logLevel)
         PiesManager.shared.startListening()
     }
     

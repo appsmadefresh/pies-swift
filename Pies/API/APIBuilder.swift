@@ -42,7 +42,7 @@ final class APIBuilder {
         do {
             jsonData = try JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
         } catch {
-            print(error.localizedDescription)
+            PiesLogger.shared.logError(message: error.localizedDescription)
             return nil
         }
         

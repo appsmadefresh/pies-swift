@@ -20,6 +20,8 @@
 		E1B3B54A2711102B00C76A29 /* APIOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B5492711102B00C76A29 /* APIOperation.swift */; };
 		E1B3B54C271110D300C76A29 /* KeychainKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B54B271110D300C76A29 /* KeychainKey.swift */; };
 		E1B3B54E271110F100C76A29 /* Pies.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B54D271110F100C76A29 /* Pies.swift */; };
+		E1D5276627162E3B0085B5CA /* PiesLogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D5276527162E3B0085B5CA /* PiesLogLevel.swift */; };
+		E1D5276A27162EC20085B5CA /* PiesLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D5276927162EC20085B5CA /* PiesLogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		E1B3B5492711102B00C76A29 /* APIOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOperation.swift; sourceTree = "<group>"; };
 		E1B3B54B271110D300C76A29 /* KeychainKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKey.swift; sourceTree = "<group>"; };
 		E1B3B54D271110F100C76A29 /* Pies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pies.swift; sourceTree = "<group>"; };
+		E1D5276527162E3B0085B5CA /* PiesLogLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiesLogLevel.swift; sourceTree = "<group>"; };
+		E1D5276927162EC20085B5CA /* PiesLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiesLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,8 @@
 				E170EA4E270E414E007B672B /* EventType.swift */,
 				E1B3B53C2710F8F400C76A29 /* Keychain.swift */,
 				E1B3B54B271110D300C76A29 /* KeychainKey.swift */,
+				E1D5276527162E3B0085B5CA /* PiesLogLevel.swift */,
+				E1D5276927162EC20085B5CA /* PiesLogger.swift */,
 				E170EA37270E4040007B672B /* Pies.h */,
 				E170EA38270E4040007B672B /* Pies.docc */,
 			);
@@ -294,10 +300,12 @@
 				E1B3B54827110E9000C76A29 /* PiesManager.swift in Sources */,
 				E1B3B54C271110D300C76A29 /* KeychainKey.swift in Sources */,
 				E1B3B546271109D400C76A29 /* APIField.swift in Sources */,
+				E1D5276A27162EC20085B5CA /* PiesLogger.swift in Sources */,
 				E1B3B5412710FA8F00C76A29 /* APIQueues.swift in Sources */,
 				E170EA4F270E414E007B672B /* EventType.swift in Sources */,
 				E170EA39270E4040007B672B /* Pies.docc in Sources */,
 				E1B3B5432710FB6600C76A29 /* APIBuilder.swift in Sources */,
+				E1D5276627162E3B0085B5CA /* PiesLogLevel.swift in Sources */,
 				E1B3B54E271110F100C76A29 /* Pies.swift in Sources */,
 				E1B3B53D2710F8F400C76A29 /* Keychain.swift in Sources */,
 			);
