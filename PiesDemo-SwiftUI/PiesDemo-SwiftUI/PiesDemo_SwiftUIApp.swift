@@ -6,9 +6,15 @@
 //
 
 import SwiftUI
+import Pies
 
 @main
 struct PiesDemo_SwiftUIApp: App {
+    
+    init() {
+        Pies.configure(appId: "1234", apiKey: "123456789")
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
