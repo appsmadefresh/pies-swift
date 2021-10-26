@@ -19,18 +19,28 @@ final class APIBuilder {
         return APIBuilder.request(forEventType: .sessionStart, appId: appId, apiKey: apiKey, deviceId: deviceId)
     }
     
-    private static func request(forEventType eventType: EventType, appId: String, apiKey: String, deviceId: String) -> URLRequest? {
+    static func requestForInAppPurchase(appId: String, apiKey: String, deviceId: String, purchaseInfo: [String: Any]) -> URLRequest? {
+        return APIBuilder.request(forEventType: .inAppPurchase, appId: appId, apiKey: apiKey, deviceId: deviceId, userInfo: purchaseInfo)
+    }
+    
+    private static func request(forEventType eventType: EventType, appId: String, apiKey: String, deviceId: String, userInfo: [String: Any]? = nil) -> URLRequest? {
         let url = URL(string: APIBuilder.trackEventURL)!
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let event: [String: Any] = [
+        var event: [String: Any] = [
             APIField.timestamp(): Date().timeIntervalSince1970,
             APIField.eventType(): eventType.rawValue,
             APIField.deviceId(): deviceId
         ]
+        
+        if let userInfo = userInfo {
+            for (key, value) in userInfo {
+                event[key] = value
+            }
+        }
         
         let body: [String: Any] = [
             APIField.appId(): appId,

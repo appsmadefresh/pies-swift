@@ -6,15 +6,26 @@
 //
 
 import UIKit
+import StoreKit
 
 final class PiesManager {
     static let shared = PiesManager()
+    
+    private var storeObserver: StoreObserver
     
     private var keychain: KeychainSwift = {
         let keychain = KeychainSwift()
         keychain.synchronizable = false
         return keychain
     }()
+    
+    init() {
+        self.storeObserver = StoreObserver(keychain: keychain)
+    }
+    
+    deinit {
+        SKPaymentQueue.default().remove(storeObserver)
+    }
     
     func configure(appId: String, apiKey: String, logLevel: PiesLogLevel = .info) {
         
@@ -24,6 +35,8 @@ final class PiesManager {
         keychain.set(apiKey, forKey: KeychainKey.apiKey)
         
         checkForNewInstall()
+        
+        SKPaymentQueue.default().add(storeObserver)
         
         PiesLogger.shared.logInfo(message: "Initialized.")
     }
