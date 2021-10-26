@@ -43,7 +43,11 @@ final class StoreObserver: NSObject {
         var transaction: SKPaymentTransaction? = pendingTransactionsToTrack.removeFirst()
         while transaction != nil {
             trackPurchaseEvent(forTransaction: transaction!)
-            transaction = pendingTransactionsToTrack.removeFirst()
+            if !pendingTransactionsToTrack.isEmpty {
+                transaction = pendingTransactionsToTrack.removeFirst()
+            } else {
+                transaction = nil
+            }
         }
     }
     
@@ -69,7 +73,14 @@ final class StoreObserver: NSObject {
         
         if let product = products[transaction.payment.productIdentifier] {
             purchaseInfo["price"] = product.formattedPrice
-            purchaseInfo["locale"] = product.priceLocale.identifier
+            
+            if let regionCode = product.priceLocale.regionCode {
+                purchaseInfo["region"] = regionCode
+            }
+            
+            if let languageCode = product.priceLocale.languageCode {
+                purchaseInfo["language"] = languageCode
+            }
             
             if let subscriptionGroupIdentifier = product.subscriptionGroupIdentifier, let subscriptionPeriod = product.subscriptionPeriod {
                 purchaseInfo["isSubscription"] = true
