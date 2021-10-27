@@ -16,9 +16,11 @@ final class StoreObserver: NSObject {
     private var pendingTransactionsToTrack = [SKPaymentTransaction]()
     
     private var keychain: KeychainSwift
+    private var useEmulator = false
     
-    init(keychain: KeychainSwift) {
+    init(keychain: KeychainSwift, useEmulator: Bool = false) {
         self.keychain = keychain
+        self.useEmulator = useEmulator
     }
     
     private func requestPrices(forTransactions transactions: [SKPaymentTransaction]) {
@@ -102,7 +104,7 @@ final class StoreObserver: NSObject {
             return
         }
         
-        guard let request =  APIBuilder.requestForInAppPurchase(appId: appId, apiKey: apiKey, deviceId: deviceId, purchaseInfo: purchaseInfo) else { return }
+        guard let request =  APIBuilder.requestForInAppPurchase(appId: appId, apiKey: apiKey, deviceId: deviceId, purchaseInfo: purchaseInfo, useEmulator: useEmulator) else { return }
         
         let operation = APIOperation(request: request) { _ in }
         APIQueues.shared.defaultQueue.addOperation(operation)

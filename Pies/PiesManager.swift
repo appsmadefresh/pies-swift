@@ -19,8 +19,10 @@ final class PiesManager {
         return keychain
     }()
     
+    static var useEmulator = false
+    
     init() {
-        self.storeObserver = StoreObserver(keychain: keychain)
+        self.storeObserver = StoreObserver(keychain: keychain, useEmulator: PiesManager.useEmulator)
     }
     
     deinit {
@@ -54,7 +56,7 @@ final class PiesManager {
             return
         }
         
-        guard let request = APIBuilder.requestForSessionStart(appId: appId, apiKey: apiKey, deviceId: deviceId) else { return }
+        guard let request = APIBuilder.requestForSessionStart(appId: appId, apiKey: apiKey, deviceId: deviceId, useEmulator: PiesManager.useEmulator) else { return }
         
         let operation = APIOperation(request: request) { _ in }
         
@@ -86,7 +88,7 @@ final class PiesManager {
             return
         }
         
-        guard let request = APIBuilder.requestForNewInstall(appId: appId, apiKey: apiKey, deviceId: deviceId) else { return }
+        guard let request = APIBuilder.requestForNewInstall(appId: appId, apiKey: apiKey, deviceId: deviceId, useEmulator: PiesManager.useEmulator) else { return }
         
         let operation = APIOperation(request: request) { _ in }
         APIQueues.shared.defaultQueue.addOperation(operation)
