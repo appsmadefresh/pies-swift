@@ -74,6 +74,9 @@ final class StoreObserver: NSObject {
         }
         
         if let product = products[transaction.payment.productIdentifier] {
+            
+            purchaseInfo["localizedTitle"] = product.localizedTitle
+            
             purchaseInfo["price"] = product.formattedPrice
             
             if let regionCode = product.priceLocale.regionCode {
