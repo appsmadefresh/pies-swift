@@ -21,6 +21,9 @@ final class PiesManager {
     
     static var useEmulator = false
     
+    static private let lastAppBackgroundTimestampKey = "last-app-background-timestamp"
+    static private let continueSessionInterval: TimeInterval = 2
+    
     init() {
         self.storeObserver = StoreObserver(keychain: keychain, useEmulator: PiesManager.useEmulator)
     }
@@ -45,10 +48,19 @@ final class PiesManager {
     
     func startListening() {
         NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didMoveToBackground), name: UIApplication.willResignActiveNotification, object: nil)
     }
     
     @objc private func didBecomeActive() {
         
+        if let lastAppBackgroundTimestamp = UserDefaults.pies.value(forKey: PiesManager.lastAppBackgroundTimestampKey) as? TimeInterval {
+            let now = Date().timeIntervalSince1970
+            let shouldContinueSession = now - lastAppBackgroundTimestamp <= PiesManager.continueSessionInterval
+            if shouldContinueSession {
+                return
+            }
+        }
+         
         guard let appId = keychain.get(KeychainKey.appId),
             let apiKey = keychain.get(KeychainKey.apiKey),
             let deviceId = keychain.get(KeychainKey.deviceId) else {
@@ -61,6 +73,10 @@ final class PiesManager {
         let operation = APIOperation(request: request) { _ in }
         
         APIQueues.shared.defaultQueue.addOperation(operation)
+    }
+    
+    @objc private func didMoveToBackground() {
+        UserDefaults.pies.set(Date().timeIntervalSince1970, forKey: PiesManager.lastAppBackgroundTimestampKey)
     }
     
     private func checkForNewInstall() {
