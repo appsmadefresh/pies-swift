@@ -22,4 +22,8 @@ public class Pies {
         PiesManager.shared.startListening()
     }
     
+    public static var deviceId: String? {
+        return PiesManager.shared.deviceId
+    }
+    
 }

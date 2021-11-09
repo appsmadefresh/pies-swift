@@ -19,6 +19,10 @@ final class PiesManager {
         return keychain
     }()
     
+    var deviceId: String? {
+        return keychain.get(KeychainKey.deviceId)
+    }
+    
     static var useEmulator = false
     
     static private let lastAppBackgroundTimestampKey = "last-app-background-timestamp"
