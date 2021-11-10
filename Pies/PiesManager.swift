@@ -6,17 +6,13 @@
 //
 
 import UIKit
-import Network
 import StoreKit
 
 final class PiesManager {
     static let shared = PiesManager()
     
-    private let networkMonitor = NWPathMonitor()
-    private var isNetworkOnline = false
-    private let networkMonitorQueue = DispatchQueue(label: "com.fresh.Pies.NetworkMonitor")
-    
     private var storeObserver: StoreObserver
+    private var eventEmitter: EventEmitter
     
     private var keychain: KeychainSwift = {
         let keychain = KeychainSwift()
@@ -35,11 +31,11 @@ final class PiesManager {
     
     init() {
         self.storeObserver = StoreObserver(keychain: keychain, useEmulator: PiesManager.useEmulator)
+        self.eventEmitter = EventEmitter(keychain: keychain, useEmulator: PiesManager.useEmulator)
     }
     
     deinit {
         SKPaymentQueue.default().remove(storeObserver)
-        networkMonitor.cancel()
     }
     
     func configure(appId: String, apiKey: String, logLevel: PiesLogLevel = .info) {
@@ -49,7 +45,7 @@ final class PiesManager {
         keychain.set(appId, forKey: KeychainKey.appId)
         keychain.set(apiKey, forKey: KeychainKey.apiKey)
         
-        startNetworkMonitor()
+        NetworkMonitor.shared.start()
         
         checkForNewInstall()
         
@@ -73,18 +69,7 @@ final class PiesManager {
             }
         }
          
-        guard let appId = keychain.get(KeychainKey.appId),
-            let apiKey = keychain.get(KeychainKey.apiKey),
-            let deviceId = keychain.get(KeychainKey.deviceId) else {
-                PiesLogger.shared.logError(message: "Failed to track active session.")
-            return
-        }
-        
-        guard let request = APIBuilder.requestForSessionStart(appId: appId, apiKey: apiKey, deviceId: deviceId, useEmulator: PiesManager.useEmulator) else { return }
-        
-        let operation = APIOperation(request: request) { _ in }
-        
-        APIQueues.shared.defaultQueue.addOperation(operation)
+        eventEmitter.sendEvent(ofType: .sessionStart)
     }
     
     @objc private func didMoveToBackground() {
@@ -110,27 +95,6 @@ final class PiesManager {
         
         keychain.set(UUID().uuidString, forKey: KeychainKey.deviceId)
         
-        guard let appId = keychain.get(KeychainKey.appId),
-              let apiKey = keychain.get(KeychainKey.apiKey),
-              let deviceId = keychain.get(KeychainKey.deviceId) else {
-            return
-        }
-        
-        guard let request = APIBuilder.requestForNewInstall(appId: appId, apiKey: apiKey, deviceId: deviceId, useEmulator: PiesManager.useEmulator) else { return }
-        
-        let operation = APIOperation(request: request) { _ in }
-        APIQueues.shared.defaultQueue.addOperation(operation)
-    }
-    
-    private func startNetworkMonitor() {
-        
-        networkMonitor.pathUpdateHandler = { path in
-            DispatchQueue.main.async {
-                self.isNetworkOnline = path.status == .satisfied
-                print("isNetworkOnline = \(self.isNetworkOnline)")
-            }
-        }
-        
-        networkMonitor.start(queue: networkMonitorQueue)
+        eventEmitter.sendEvent(ofType: .newInstall)
     }
 }

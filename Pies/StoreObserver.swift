@@ -18,9 +18,12 @@ final class StoreObserver: NSObject {
     private var keychain: KeychainSwift
     private var useEmulator = false
     
+    private var eventEmitter: EventEmitter
+    
     init(keychain: KeychainSwift, useEmulator: Bool = false) {
         self.keychain = keychain
         self.useEmulator = useEmulator
+        self.eventEmitter = EventEmitter(keychain: keychain, useEmulator: useEmulator)
     }
     
     private func requestPrices(forTransactions transactions: [SKPaymentTransaction]) {
@@ -101,16 +104,7 @@ final class StoreObserver: NSObject {
             purchaseInfo["isSandbox"] = true
         }
         
-        guard let appId = keychain.get(KeychainKey.appId),
-              let apiKey = keychain.get(KeychainKey.apiKey),
-              let deviceId = keychain.get(KeychainKey.deviceId) else {
-            return
-        }
-        
-        guard let request =  APIBuilder.requestForInAppPurchase(appId: appId, apiKey: apiKey, deviceId: deviceId, purchaseInfo: purchaseInfo, useEmulator: useEmulator) else { return }
-        
-        let operation = APIOperation(request: request) { _ in }
-        APIQueues.shared.defaultQueue.addOperation(operation)
+        eventEmitter.sendEvent(ofType: .inAppPurchase, userInfo: purchaseInfo)
     }
     
 }
