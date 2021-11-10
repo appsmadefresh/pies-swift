@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import Network
 import StoreKit
 
 final class PiesManager {
     static let shared = PiesManager()
+    
+    private let networkMonitor = NWPathMonitor()
+    private var isNetworkOnline = false
+    private let networkMonitorQueue = DispatchQueue(label: "com.fresh.Pies.NetworkMonitor")
     
     private var storeObserver: StoreObserver
     
@@ -34,6 +39,7 @@ final class PiesManager {
     
     deinit {
         SKPaymentQueue.default().remove(storeObserver)
+        networkMonitor.cancel()
     }
     
     func configure(appId: String, apiKey: String, logLevel: PiesLogLevel = .info) {
@@ -42,6 +48,8 @@ final class PiesManager {
         
         keychain.set(appId, forKey: KeychainKey.appId)
         keychain.set(apiKey, forKey: KeychainKey.apiKey)
+        
+        startNetworkMonitor()
         
         checkForNewInstall()
         
@@ -112,5 +120,17 @@ final class PiesManager {
         
         let operation = APIOperation(request: request) { _ in }
         APIQueues.shared.defaultQueue.addOperation(operation)
+    }
+    
+    private func startNetworkMonitor() {
+        
+        networkMonitor.pathUpdateHandler = { path in
+            DispatchQueue.main.async {
+                self.isNetworkOnline = path.status == .satisfied
+                print("isNetworkOnline = \(self.isNetworkOnline)")
+            }
+        }
+        
+        networkMonitor.start(queue: networkMonitorQueue)
     }
 }
