@@ -15,6 +15,7 @@
 		E170EA45270E4040007B672B /* Pies.h in Headers */ = {isa = PBXBuildFile; fileRef = E170EA37270E4040007B672B /* Pies.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E170EA4F270E414E007B672B /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E170EA4E270E414E007B672B /* EventType.swift */; };
 		E171D5F6273202EE00FA1730 /* UserDefaults+Pies.swift in Sources */ = {isa = PBXBuildFile; fileRef = E171D5F5273202EE00FA1730 /* UserDefaults+Pies.swift */; };
+		E19106CC273C6C1300F2E779 /* EventCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19106CB273C6C1300F2E779 /* EventCache.swift */; };
 		E1B3B53D2710F8F400C76A29 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B53C2710F8F400C76A29 /* Keychain.swift */; };
 		E1B3B5412710FA8F00C76A29 /* APIQueues.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B5402710FA8F00C76A29 /* APIQueues.swift */; };
 		E1B3B5432710FB6600C76A29 /* APIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B5422710FB6600C76A29 /* APIBuilder.swift */; };
@@ -63,6 +64,7 @@
 		E170EA8A270E4647007B672B /* PiesDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PiesDemo.xcodeproj; path = PiesDemo/PiesDemo.xcodeproj; sourceTree = "<group>"; };
 		E170EAAF270E4758007B672B /* PiesDemo-SwiftUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "PiesDemo-SwiftUI.xcodeproj"; path = "PiesDemo-SwiftUI/PiesDemo-SwiftUI.xcodeproj"; sourceTree = "<group>"; };
 		E171D5F5273202EE00FA1730 /* UserDefaults+Pies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Pies.swift"; sourceTree = "<group>"; };
+		E19106CB273C6C1300F2E779 /* EventCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCache.swift; sourceTree = "<group>"; };
 		E1B3B53C2710F8F400C76A29 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		E1B3B5402710FA8F00C76A29 /* APIQueues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQueues.swift; sourceTree = "<group>"; };
 		E1B3B5422710FB6600C76A29 /* APIBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBuilder.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				E1B3B54727110E9000C76A29 /* PiesManager.swift */,
 				E1B3B5442711097B00C76A29 /* API */,
 				E170EA4E270E414E007B672B /* EventType.swift */,
+				E19106CB273C6C1300F2E779 /* EventCache.swift */,
 				E1B3B53C2710F8F400C76A29 /* Keychain.swift */,
 				E1B3B54B271110D300C76A29 /* KeychainKey.swift */,
 				E1D5276527162E3B0085B5CA /* PiesLogLevel.swift */,
@@ -306,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1B3B54A2711102B00C76A29 /* APIOperation.swift in Sources */,
+				E19106CC273C6C1300F2E779 /* EventCache.swift in Sources */,
 				E14EFE30272869680075D4AB /* StoreObserver.swift in Sources */,
 				E14EFE3427287DDD0075D4AB /* ProductPriceFormatter.swift in Sources */,
 				E171D5F6273202EE00FA1730 /* UserDefaults+Pies.swift in Sources */,
