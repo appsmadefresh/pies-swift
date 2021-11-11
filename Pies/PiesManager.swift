@@ -76,6 +76,8 @@ final class PiesManager {
     
     @objc private func didMoveToBackground() {
         UserDefaults.pies.set(Date().timeIntervalSince1970, forKey: PiesManager.lastAppBackgroundTimestampKey)
+        
+        APIQueues.shared.defaultQueue.cancelAllOperations()
     }
     
     private func checkForNewInstall() {

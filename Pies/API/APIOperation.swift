@@ -26,19 +26,21 @@ final class APIOperation: Operation {
     
     override func main() {
         if isCancelled {
+            cacheEvent(forRequest: request)
             return
         }
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             if let error = error {
-                PiesLogger.shared.logError(message: error.localizedDescription)
+                PiesLogger.shared.logDebug(message: error.localizedDescription)
+                self.cacheEvent(forRequest: self.request)
                 self.completeAction(nil)
                 return
             }
             
             guard let response = response as? HTTPURLResponse else {
-                PiesLogger.shared.logError(message: "No API Response")
+                PiesLogger.shared.logDebug(message: "No API Response")
                 self.completeAction(nil)
                 return
             }
@@ -48,6 +50,7 @@ final class APIOperation: Operation {
                 if let data = data {
                     self.completeAction(data)
                 } else {
+                    PiesLogger.shared.logDebug(message: "Response data is nil")
                     self.completeAction(nil)
                 }
                 
