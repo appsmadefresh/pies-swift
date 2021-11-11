@@ -37,21 +37,55 @@ final class APIOperation: Operation {
                 return
             }
             
-            guard response != nil else {
+            guard let response = response as? HTTPURLResponse else {
                 PiesLogger.shared.logError(message: "No API Response")
                 self.completeAction(nil)
                 return
             }
             
-            if let data = data {
-                self.completeAction(data)
-            } else {
+            switch response.statusCode {
+            case 200:
+                if let data = data {
+                    self.completeAction(data)
+                } else {
+                    self.completeAction(nil)
+                }
+                
+            case 400:
+                PiesLogger.shared.logError(message: "Invalid Request")
+                self.completeAction(nil)
+                
+            case 401:
+                PiesLogger.shared.logError(message: "Unauthorized Request")
+                self.completeAction(nil)
+                
+            case 403:
+                PiesLogger.shared.logError(message: "Forbidden")
+                self.completeAction(nil)
+                
+            default:
+                self.cacheEvent(forRequest: self.request)
                 self.completeAction(nil)
             }
             
         }
         
         task.resume()
+        
+    }
+    
+    func cacheEvent(forRequest request: URLRequest) {
+        
+        do {
+            guard let data = request.httpBody else { return }
+            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+               let event = json[APIField.event()] as? [String: Any] {
+                EventCache.putBackEvent(event)
+            }
+            
+        } catch let error as NSError {
+            PiesLogger.shared.logError(message: "Failed to cache event: \(error.localizedDescription)")
+        }
         
     }
     
