@@ -33,4 +33,13 @@ final class EventCache {
         UserDefaults.pies.set(events, forKey: EventCache.eventsKey)
     }
     
+    static var isEmpty: Bool {
+        let events = UserDefaults.pies.array(forKey: EventCache.eventsKey) ?? [[String: Any]]()
+        return events.isEmpty
+    }
+    
+    static var count: Int {
+        let events = UserDefaults.pies.array(forKey: EventCache.eventsKey) ?? [[String: Any]]()
+        return events.count
+    }
 }

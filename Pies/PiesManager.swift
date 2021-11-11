@@ -69,6 +69,8 @@ final class PiesManager {
             }
         }
          
+        eventEmitter.sendCachedEvents()
+        
         eventEmitter.sendEvent(ofType: .sessionStart)
     }
     

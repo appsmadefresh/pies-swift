@@ -19,11 +19,7 @@ final class EventEmitter {
     
     func sendEvent(ofType eventType: EventType, userInfo: [String: Any]? = nil) {
         
-        guard let appId = keychain.get(KeychainKey.appId),
-              let apiKey = keychain.get(KeychainKey.apiKey),
-              let deviceId = keychain.get(KeychainKey.deviceId) else {
-            return
-        }
+        guard let deviceId = keychain.get(KeychainKey.deviceId) else { return }
         
         let event: [String: Any]
         switch eventType {
@@ -42,6 +38,15 @@ final class EventEmitter {
             event = EventBuilder.inAppPurchase(deviceId: deviceId, purchaseInfo: userInfo)
         }
         
+        sendEvent(event)
+    }
+    
+    func sendEvent(_ event: [String: Any]) {
+        guard let appId = keychain.get(KeychainKey.appId),
+              let apiKey = keychain.get(KeychainKey.apiKey) else {
+            return
+        }
+        
         guard NetworkMonitor.shared.isOnline else {
             EventCache.pushEvent(event)
             return
@@ -51,5 +56,18 @@ final class EventEmitter {
         
         let operation = APIOperation(request: request) { _ in }
         APIQueues.shared.defaultQueue.addOperation(operation)
+    }
+    
+    func sendCachedEvents() {
+        
+        guard NetworkMonitor.shared.isOnline else { return }
+        
+        let eventCount = EventCache.count
+        for _ in 0..<eventCount {
+            if let event = EventCache.popEvent() {
+                sendEvent(event)
+            }
+        }
+        
     }
 }
