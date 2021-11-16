@@ -27,7 +27,7 @@ final class PiesManager {
     static var useEmulator = false
     
     static private let lastAppBackgroundTimestampKey = "last-app-background-timestamp"
-    static private let continueSessionInterval: TimeInterval = 2
+    static private let continueSessionInterval: TimeInterval = 5
     
     init() {
         self.storeObserver = StoreObserver(keychain: keychain, useEmulator: PiesManager.useEmulator)
