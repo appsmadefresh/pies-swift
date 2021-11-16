@@ -97,8 +97,13 @@ final class PiesManager {
         
         if keychain.get(KeychainKey.deviceId) != nil { return }
         
-        keychain.set(UUID().uuidString, forKey: KeychainKey.deviceId)
+        let deviceId = UIDevice.current.identifierForVendor?.uuidString ?? UUID().uuidString
+        keychain.set(deviceId, forKey: KeychainKey.deviceId)
         
-        eventEmitter.sendEvent(ofType: .newInstall)
+        let now = Date()
+        if now.timeIntervalSince1970 - installed.timeIntervalSince1970 <= 86400 {
+            // Consider it a new install if it's been 24 hours or less since the app was installed.
+            eventEmitter.sendEvent(ofType: .newInstall)
+        }
     }
 }
