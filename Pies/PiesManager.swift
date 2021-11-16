@@ -15,7 +15,7 @@ final class PiesManager {
     private var eventEmitter: EventEmitter
     
     private var keychain: KeychainSwift = {
-        let keychain = KeychainSwift()
+        let keychain = KeychainSwift(keyPrefix: KeychainSwift.piesKeyChainPrefix)
         keychain.synchronizable = false
         return keychain
     }()
@@ -102,7 +102,7 @@ final class PiesManager {
         
         let now = Date()
         if now.timeIntervalSince1970 - installed.timeIntervalSince1970 <= 86400 {
-            // Consider it a new install if it's been 24 hours or less since the app was installed.
+            // Send new install event if within 24 hours of actual app installation.
             eventEmitter.sendEvent(ofType: .newInstall)
         }
     }
