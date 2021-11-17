@@ -101,8 +101,8 @@ final class PiesManager {
         keychain.set(deviceId, forKey: KeychainKey.deviceId)
         
         let now = Date()
-        if now.timeIntervalSince1970 - installed.timeIntervalSince1970 <= 60 {
-            // Send new install event if within 60 seconds of actual app installation.
+        if now.timeIntervalSince1970 - installed.timeIntervalSince1970 <= 86400 {
+            // Send new install event if within 24 hours of actual app installation.
             eventEmitter.sendEvent(ofType: .newInstall)
         }
     }
