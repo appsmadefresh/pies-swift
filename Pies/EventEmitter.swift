@@ -36,6 +36,12 @@ final class EventEmitter {
                 return
             }
             event = EventBuilder.inAppPurchase(deviceId: deviceId, purchaseInfo: userInfo)
+        case .userActiveToday:
+            event = EventBuilder.userActiveToday(deviceId: deviceId)
+        case .userActiveThisWeek:
+            event = EventBuilder.userActiveThisWeek(deviceId: deviceId)
+        case .userActiveThisMonth:
+            event = EventBuilder.userActiveThisMonth(deviceId: deviceId)
         }
         
         sendEvent(event)

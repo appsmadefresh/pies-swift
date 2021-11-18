@@ -70,8 +70,8 @@ final class PiesManager {
         }
          
         eventEmitter.sendCachedEvents()
-        
         eventEmitter.sendEvent(ofType: .sessionStart)
+        sendActiveUser()
     }
     
     @objc private func didMoveToBackground() {
@@ -105,5 +105,41 @@ final class PiesManager {
             // Send new install event if within 24 hours of actual app installation.
             eventEmitter.sendEvent(ofType: .newInstall)
         }
+    }
+    
+    private func sendActiveUser() {
+        
+        let now = Date()
+        
+        guard let userActiveTodayDateString = keychain.get(KeychainKey.userActiveTodayDate),
+              let userActiveThisWeekDateString = keychain.get(KeychainKey.userActiveThisWeekDate),
+              let userActiveThisMonthDateString = keychain.get(KeychainKey.userActiveThisMonthDate) else {
+            
+            keychain.set("\(now.getStartOfDay())", forKey: KeychainKey.userActiveTodayDate)
+            keychain.set("\(now.getStartOfWeek())", forKey: KeychainKey.userActiveThisWeekDate)
+            keychain.set("\(now.getStartOfMonth())", forKey: KeychainKey.userActiveThisMonthDate)
+            
+            eventEmitter.sendEvent(ofType: .userActiveToday)
+            eventEmitter.sendEvent(ofType: .userActiveThisWeek)
+            eventEmitter.sendEvent(ofType: .userActiveThisMonth)
+                  
+            return
+        }
+        
+        if let userActiveTodayDate = Int(userActiveTodayDateString), now.getStartOfDay() != userActiveTodayDate {
+            keychain.set("\(now.getStartOfDay())", forKey: KeychainKey.userActiveTodayDate)
+            eventEmitter.sendEvent(ofType: .userActiveToday)
+        }
+
+        if let userActiveThisWeekDate = Int(userActiveThisWeekDateString), now.getStartOfWeek() != userActiveThisWeekDate {
+            keychain.set("\(now.getStartOfWeek())", forKey: KeychainKey.userActiveThisWeekDate)
+            eventEmitter.sendEvent(ofType: .userActiveThisWeek)
+        }
+
+        if let userActiveThisMonthDate = Int(userActiveThisMonthDateString), now.getStartOfMonth() != userActiveThisMonthDate {
+            keychain.set("\(now.getStartOfMonth())", forKey: KeychainKey.userActiveThisMonthDate)
+            eventEmitter.sendEvent(ofType: .userActiveThisMonth)
+        }
+        
     }
 }

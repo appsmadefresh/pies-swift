@@ -15,6 +15,8 @@
 		E170EA45270E4040007B672B /* Pies.h in Headers */ = {isa = PBXBuildFile; fileRef = E170EA37270E4040007B672B /* Pies.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E170EA4F270E414E007B672B /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E170EA4E270E414E007B672B /* EventType.swift */; };
 		E171D5F6273202EE00FA1730 /* UserDefaults+Pies.swift in Sources */ = {isa = PBXBuildFile; fileRef = E171D5F5273202EE00FA1730 /* UserDefaults+Pies.swift */; };
+		E1732EB82746DE7800BE0D25 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1732EB72746DE7800BE0D25 /* Date+Extension.swift */; };
+		E1732EBE2746DECF00BE0D25 /* DateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1732EBB2746DEA900BE0D25 /* DateExtensionTests.swift */; };
 		E19106CC273C6C1300F2E779 /* EventCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19106CB273C6C1300F2E779 /* EventCache.swift */; };
 		E19106D0273C81B300F2E779 /* EventBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19106CF273C81B300F2E779 /* EventBuilder.swift */; };
 		E19106D2273C8E4100F2E779 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19106D1273C8E4100F2E779 /* NetworkMonitor.swift */; };
@@ -67,6 +69,8 @@
 		E170EA8A270E4647007B672B /* PiesDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PiesDemo.xcodeproj; path = PiesDemo/PiesDemo.xcodeproj; sourceTree = "<group>"; };
 		E170EAAF270E4758007B672B /* PiesDemo-SwiftUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "PiesDemo-SwiftUI.xcodeproj"; path = "PiesDemo-SwiftUI/PiesDemo-SwiftUI.xcodeproj"; sourceTree = "<group>"; };
 		E171D5F5273202EE00FA1730 /* UserDefaults+Pies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Pies.swift"; sourceTree = "<group>"; };
+		E1732EB72746DE7800BE0D25 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		E1732EBB2746DEA900BE0D25 /* DateExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionTests.swift; sourceTree = "<group>"; };
 		E19106CB273C6C1300F2E779 /* EventCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCache.swift; sourceTree = "<group>"; };
 		E19106CF273C81B300F2E779 /* EventBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBuilder.swift; sourceTree = "<group>"; };
 		E19106D1273C8E4100F2E779 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 				E19106D1273C8E4100F2E779 /* NetworkMonitor.swift */,
 				E14EFE3327287DDD0075D4AB /* ProductPriceFormatter.swift */,
 				E171D5F5273202EE00FA1730 /* UserDefaults+Pies.swift */,
+				E1732EB72746DE7800BE0D25 /* Date+Extension.swift */,
+				E1732EBB2746DEA900BE0D25 /* DateExtensionTests.swift */,
 				E170EA37270E4040007B672B /* Pies.h */,
 				E170EA38270E4040007B672B /* Pies.docc */,
 			);
@@ -322,6 +328,7 @@
 				E19106CC273C6C1300F2E779 /* EventCache.swift in Sources */,
 				E14EFE30272869680075D4AB /* StoreObserver.swift in Sources */,
 				E14EFE3427287DDD0075D4AB /* ProductPriceFormatter.swift in Sources */,
+				E1732EB82746DE7800BE0D25 /* Date+Extension.swift in Sources */,
 				E171D5F6273202EE00FA1730 /* UserDefaults+Pies.swift in Sources */,
 				E19106D4273C8FA900F2E779 /* EventEmitter.swift in Sources */,
 				E1B3B54827110E9000C76A29 /* PiesManager.swift in Sources */,
@@ -344,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E170EA44270E4040007B672B /* PiesTests.swift in Sources */,
+				E1732EBE2746DECF00BE0D25 /* DateExtensionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

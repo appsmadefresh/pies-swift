@@ -12,6 +12,9 @@ enum KeychainKey {
     static let apiKey = "pies-keychain-api-key"
     static let deviceId = "pies-keychain-device-id"
     static let installDate = "pies-keychain-install-date"
+    static let userActiveTodayDate = "pies-user-active-today-date"
+    static let userActiveThisWeekDate = "pies-user-active-this-week-date"
+    static let userActiveThisMonthDate = "pies-user-active-this-month-date"
 }
 
 extension KeychainSwift {

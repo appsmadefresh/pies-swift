@@ -12,4 +12,7 @@ public enum EventType: String {
     case sessionStart
     case sessionEnd
     case inAppPurchase
+    case userActiveToday
+    case userActiveThisWeek
+    case userActiveThisMonth
 }

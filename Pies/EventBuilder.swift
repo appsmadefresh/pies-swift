@@ -21,6 +21,18 @@ final class EventBuilder {
         return event(eventType: .inAppPurchase, deviceId: deviceId, userInfo: purchaseInfo)
     }
     
+    static func userActiveToday(deviceId: String) -> [String: Any] {
+        return event(eventType: .userActiveToday, deviceId: deviceId, userInfo: nil)
+    }
+    
+    static func userActiveThisWeek(deviceId: String) -> [String: Any] {
+        return event(eventType: .userActiveThisWeek, deviceId: deviceId, userInfo: nil)
+    }
+    
+    static func userActiveThisMonth(deviceId: String) -> [String: Any] {
+        return event(eventType: .userActiveThisMonth, deviceId: deviceId, userInfo: nil)
+    }
+    
     static func event(eventType: EventType, deviceId: String, userInfo: [String: Any]?) -> [String: Any] {
         
         var event: [String: Any] = [
