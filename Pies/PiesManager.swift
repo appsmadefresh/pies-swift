@@ -115,6 +115,8 @@ final class PiesManager {
               let userActiveThisWeekDateString = keychain.get(KeychainKey.userActiveThisWeekDate),
               let userActiveThisMonthDateString = keychain.get(KeychainKey.userActiveThisMonthDate) else {
             
+            PiesLogger.shared.logDebug(message: "Sending active user events for Today, This Week and This Month.")
+                  
             keychain.set("\(now.getStartOfDay())", forKey: KeychainKey.userActiveTodayDate)
             keychain.set("\(now.getStartOfWeek())", forKey: KeychainKey.userActiveThisWeekDate)
             keychain.set("\(now.getStartOfMonth())", forKey: KeychainKey.userActiveThisMonthDate)
@@ -127,16 +129,19 @@ final class PiesManager {
         }
         
         if let userActiveTodayDate = Int(userActiveTodayDateString), now.getStartOfDay() != userActiveTodayDate {
+            PiesLogger.shared.logDebug(message: "Sending active user event for Today.")
             keychain.set("\(now.getStartOfDay())", forKey: KeychainKey.userActiveTodayDate)
             eventEmitter.sendEvent(ofType: .userActiveToday)
         }
 
         if let userActiveThisWeekDate = Int(userActiveThisWeekDateString), now.getStartOfWeek() != userActiveThisWeekDate {
+            PiesLogger.shared.logDebug(message: "Sending active user event for This Week.")
             keychain.set("\(now.getStartOfWeek())", forKey: KeychainKey.userActiveThisWeekDate)
             eventEmitter.sendEvent(ofType: .userActiveThisWeek)
         }
 
         if let userActiveThisMonthDate = Int(userActiveThisMonthDateString), now.getStartOfMonth() != userActiveThisMonthDate {
+            PiesLogger.shared.logDebug(message: "Sending active user event for This Month.")
             keychain.set("\(now.getStartOfMonth())", forKey: KeychainKey.userActiveThisMonthDate)
             eventEmitter.sendEvent(ofType: .userActiveThisMonth)
         }
