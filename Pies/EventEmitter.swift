@@ -9,17 +9,17 @@ import Foundation
 
 final class EventEmitter {
     
-    private var keychain: KeychainSwift
+    private var userDefaults: UserDefaults!
     private var useEmulator = false
     
-    init(keychain: KeychainSwift, useEmulator: Bool = false) {
-        self.keychain = keychain
+    init(userDefaults: UserDefaults, useEmulator: Bool = false) {
+        self.userDefaults = userDefaults
         self.useEmulator = useEmulator
     }
     
     func sendEvent(ofType eventType: EventType, userInfo: [String: Any]? = nil) {
         
-        guard let deviceId = keychain.get(KeychainKey.deviceId) else { return }
+        guard let deviceId = userDefaults.string(forKey: PiesKey.deviceId) else { return }
         
         let event: [String: Any]
         switch eventType {
@@ -36,20 +36,20 @@ final class EventEmitter {
                 return
             }
             event = EventBuilder.inAppPurchase(deviceId: deviceId, purchaseInfo: userInfo)
-        case .userActiveToday:
-            event = EventBuilder.userActiveToday(deviceId: deviceId)
-        case .userActiveThisWeek:
-            event = EventBuilder.userActiveThisWeek(deviceId: deviceId)
-        case .userActiveThisMonth:
-            event = EventBuilder.userActiveThisMonth(deviceId: deviceId)
+        case .deviceActiveToday:
+            event = EventBuilder.deviceActiveToday(deviceId: deviceId)
+        case .deviceActiveThisWeek:
+            event = EventBuilder.deviceActiveThisWeek(deviceId: deviceId)
+        case .deviceActiveThisMonth:
+            event = EventBuilder.deviceActiveThisMonth(deviceId: deviceId)
         }
         
         sendEvent(event)
     }
     
     func sendEvent(_ event: [String: Any]) {
-        guard let appId = keychain.get(KeychainKey.appId),
-              let apiKey = keychain.get(KeychainKey.apiKey) else {
+        guard let appId = userDefaults.string(forKey: PiesKey.appId),
+              let apiKey = userDefaults.string(forKey: PiesKey.apiKey) else {
             return
         }
         

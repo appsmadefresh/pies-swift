@@ -21,13 +21,11 @@
 		E19106D0273C81B300F2E779 /* EventBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19106CF273C81B300F2E779 /* EventBuilder.swift */; };
 		E19106D2273C8E4100F2E779 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19106D1273C8E4100F2E779 /* NetworkMonitor.swift */; };
 		E19106D4273C8FA900F2E779 /* EventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19106D3273C8FA900F2E779 /* EventEmitter.swift */; };
-		E1B3B53D2710F8F400C76A29 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B53C2710F8F400C76A29 /* Keychain.swift */; };
 		E1B3B5412710FA8F00C76A29 /* APIQueues.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B5402710FA8F00C76A29 /* APIQueues.swift */; };
 		E1B3B5432710FB6600C76A29 /* APIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B5422710FB6600C76A29 /* APIBuilder.swift */; };
 		E1B3B546271109D400C76A29 /* APIField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B545271109D400C76A29 /* APIField.swift */; };
 		E1B3B54827110E9000C76A29 /* PiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B54727110E9000C76A29 /* PiesManager.swift */; };
 		E1B3B54A2711102B00C76A29 /* APIOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B5492711102B00C76A29 /* APIOperation.swift */; };
-		E1B3B54C271110D300C76A29 /* KeychainKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B54B271110D300C76A29 /* KeychainKey.swift */; };
 		E1B3B54E271110F100C76A29 /* Pies.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B3B54D271110F100C76A29 /* Pies.swift */; };
 		E1D5276627162E3B0085B5CA /* PiesLogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D5276527162E3B0085B5CA /* PiesLogLevel.swift */; };
 		E1D5276A27162EC20085B5CA /* PiesLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D5276927162EC20085B5CA /* PiesLogger.swift */; };
@@ -75,13 +73,11 @@
 		E19106CF273C81B300F2E779 /* EventBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBuilder.swift; sourceTree = "<group>"; };
 		E19106D1273C8E4100F2E779 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		E19106D3273C8FA900F2E779 /* EventEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEmitter.swift; sourceTree = "<group>"; };
-		E1B3B53C2710F8F400C76A29 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		E1B3B5402710FA8F00C76A29 /* APIQueues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQueues.swift; sourceTree = "<group>"; };
 		E1B3B5422710FB6600C76A29 /* APIBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBuilder.swift; sourceTree = "<group>"; };
 		E1B3B545271109D400C76A29 /* APIField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIField.swift; sourceTree = "<group>"; };
 		E1B3B54727110E9000C76A29 /* PiesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiesManager.swift; sourceTree = "<group>"; };
 		E1B3B5492711102B00C76A29 /* APIOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOperation.swift; sourceTree = "<group>"; };
-		E1B3B54B271110D300C76A29 /* KeychainKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKey.swift; sourceTree = "<group>"; };
 		E1B3B54D271110F100C76A29 /* Pies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pies.swift; sourceTree = "<group>"; };
 		E1D5276527162E3B0085B5CA /* PiesLogLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiesLogLevel.swift; sourceTree = "<group>"; };
 		E1D5276927162EC20085B5CA /* PiesLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiesLogger.swift; sourceTree = "<group>"; };
@@ -136,8 +132,6 @@
 				E19106CB273C6C1300F2E779 /* EventCache.swift */,
 				E19106CF273C81B300F2E779 /* EventBuilder.swift */,
 				E19106D3273C8FA900F2E779 /* EventEmitter.swift */,
-				E1B3B53C2710F8F400C76A29 /* Keychain.swift */,
-				E1B3B54B271110D300C76A29 /* KeychainKey.swift */,
 				E1D5276527162E3B0085B5CA /* PiesLogLevel.swift */,
 				E1D5276927162EC20085B5CA /* PiesLogger.swift */,
 				E14EFE2F272869680075D4AB /* StoreObserver.swift */,
@@ -333,7 +327,6 @@
 				E19106D4273C8FA900F2E779 /* EventEmitter.swift in Sources */,
 				E1B3B54827110E9000C76A29 /* PiesManager.swift in Sources */,
 				E19106D2273C8E4100F2E779 /* NetworkMonitor.swift in Sources */,
-				E1B3B54C271110D300C76A29 /* KeychainKey.swift in Sources */,
 				E1B3B546271109D400C76A29 /* APIField.swift in Sources */,
 				E1D5276A27162EC20085B5CA /* PiesLogger.swift in Sources */,
 				E1B3B5412710FA8F00C76A29 /* APIQueues.swift in Sources */,
@@ -342,7 +335,6 @@
 				E1B3B5432710FB6600C76A29 /* APIBuilder.swift in Sources */,
 				E1D5276627162E3B0085B5CA /* PiesLogLevel.swift in Sources */,
 				E1B3B54E271110F100C76A29 /* Pies.swift in Sources */,
-				E1B3B53D2710F8F400C76A29 /* Keychain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,15 +15,15 @@ final class StoreObserver: NSObject {
     
     private var pendingTransactionsToTrack = [SKPaymentTransaction]()
     
-    private var keychain: KeychainSwift
+    private var userDefaults: UserDefaults!
     private var useEmulator = false
     
     private var eventEmitter: EventEmitter
     
-    init(keychain: KeychainSwift, useEmulator: Bool = false) {
-        self.keychain = keychain
+    init(userDefaults: UserDefaults, useEmulator: Bool = false) {
+        self.userDefaults = userDefaults
         self.useEmulator = useEmulator
-        self.eventEmitter = EventEmitter(keychain: keychain, useEmulator: useEmulator)
+        self.eventEmitter = EventEmitter(userDefaults: userDefaults, useEmulator: useEmulator)
     }
     
     private func requestPrices(forTransactions transactions: [SKPaymentTransaction]) {

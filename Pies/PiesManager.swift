@@ -11,17 +11,12 @@ import StoreKit
 final class PiesManager {
     static let shared = PiesManager()
     
+    private var userDefaults: UserDefaults
     private var storeObserver: StoreObserver
     private var eventEmitter: EventEmitter
     
-    private var keychain: KeychainSwift = {
-        let keychain = KeychainSwift(keyPrefix: KeychainSwift.piesKeyChainPrefix)
-        keychain.synchronizable = false
-        return keychain
-    }()
-    
     var deviceId: String? {
-        return keychain.get(KeychainKey.deviceId)
+        return UserDefaults.pies.string(forKey: PiesKey.deviceId)
     }
     
     static var useEmulator = false
@@ -30,8 +25,9 @@ final class PiesManager {
     static private let continueSessionInterval: TimeInterval = 5
     
     init() {
-        self.storeObserver = StoreObserver(keychain: keychain, useEmulator: PiesManager.useEmulator)
-        self.eventEmitter = EventEmitter(keychain: keychain, useEmulator: PiesManager.useEmulator)
+        self.userDefaults = UserDefaults.pies
+        self.storeObserver = StoreObserver(userDefaults:  self.userDefaults, useEmulator: PiesManager.useEmulator)
+        self.eventEmitter = EventEmitter(userDefaults:  self.userDefaults, useEmulator: PiesManager.useEmulator)
     }
     
     deinit {
@@ -42,8 +38,8 @@ final class PiesManager {
         
         PiesLogger.shared.level = logLevel
         
-        keychain.set(appId, forKey: KeychainKey.appId)
-        keychain.set(apiKey, forKey: KeychainKey.apiKey)
+        userDefaults.set(appId, forKey: PiesKey.appId)
+        userDefaults.set(apiKey, forKey: PiesKey.apiKey)
         
         NetworkMonitor.shared.start()
         
@@ -61,7 +57,7 @@ final class PiesManager {
     
     @objc private func didBecomeActive() {
         
-        if let lastAppBackgroundTimestamp = UserDefaults.pies.value(forKey: PiesManager.lastAppBackgroundTimestampKey) as? TimeInterval {
+        if let lastAppBackgroundTimestamp = userDefaults.value(forKey: PiesManager.lastAppBackgroundTimestampKey) as? TimeInterval {
             let now = Date().timeIntervalSince1970
             let shouldContinueSession = now - lastAppBackgroundTimestamp <= PiesManager.continueSessionInterval
             if shouldContinueSession {
@@ -71,7 +67,7 @@ final class PiesManager {
          
         eventEmitter.sendCachedEvents()
         eventEmitter.sendEvent(ofType: .sessionStart)
-        sendActiveUser()
+        sendActiveDevice()
     }
     
     @objc private func didMoveToBackground() {
@@ -82,7 +78,7 @@ final class PiesManager {
     
     private func checkForNewInstall() {
         
-        if keychain.get(KeychainKey.installDate) != nil { return }
+        if userDefaults.string(forKey: PiesKey.installDate) != nil { return }
         
         var installed: Date?
         if let documentsFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last {
@@ -93,12 +89,12 @@ final class PiesManager {
         
         guard let installed = installed else { return }
 
-        keychain.set("\(installed.timeIntervalSince1970)", forKey: KeychainKey.installDate)
+        userDefaults.set("\(installed.timeIntervalSince1970)", forKey: PiesKey.installDate)
         
-        if keychain.get(KeychainKey.deviceId) != nil { return }
+        if userDefaults.string(forKey: PiesKey.deviceId) != nil { return }
         
         let deviceId = UIDevice.current.identifierForVendor?.uuidString ?? UUID().uuidString
-        keychain.set(deviceId, forKey: KeychainKey.deviceId)
+        userDefaults.set(deviceId, forKey: PiesKey.deviceId)
         
         let now = Date()
         if now.timeIntervalSince1970 - installed.timeIntervalSince1970 <= 86400 {
@@ -107,43 +103,43 @@ final class PiesManager {
         }
     }
     
-    private func sendActiveUser() {
+    private func sendActiveDevice() {
         
         let now = Date()
         
-        guard let userActiveTodayDateString = keychain.get(KeychainKey.userActiveTodayDate),
-              let userActiveThisWeekDateString = keychain.get(KeychainKey.userActiveThisWeekDate),
-              let userActiveThisMonthDateString = keychain.get(KeychainKey.userActiveThisMonthDate) else {
+        guard let deviceActiveTodayDateString = userDefaults.string(forKey: PiesKey.deviceActiveTodayDate),
+              let deviceActiveThisWeekDateString = userDefaults.string(forKey: PiesKey.deviceActiveThisWeekDate),
+              let deviceActiveThisMonthDateString = userDefaults.string(forKey: PiesKey.deviceActiveThisMonthDate) else {
             
-            PiesLogger.shared.logDebug(message: "Sending active user events for Today, This Week and This Month.")
+            PiesLogger.shared.logDebug(message: "Sending active device events for Today, This Week and This Month.")
                   
-            keychain.set("\(now.getStartOfDay())", forKey: KeychainKey.userActiveTodayDate)
-            keychain.set("\(now.getStartOfWeek())", forKey: KeychainKey.userActiveThisWeekDate)
-            keychain.set("\(now.getStartOfMonth())", forKey: KeychainKey.userActiveThisMonthDate)
+            userDefaults.set("\(now.getStartOfDay())", forKey: PiesKey.deviceActiveTodayDate)
+            userDefaults.set("\(now.getStartOfWeek())", forKey: PiesKey.deviceActiveThisWeekDate)
+            userDefaults.set("\(now.getStartOfMonth())", forKey: PiesKey.deviceActiveThisMonthDate)
             
-            eventEmitter.sendEvent(ofType: .userActiveToday)
-            eventEmitter.sendEvent(ofType: .userActiveThisWeek)
-            eventEmitter.sendEvent(ofType: .userActiveThisMonth)
+            eventEmitter.sendEvent(ofType: .deviceActiveToday)
+            eventEmitter.sendEvent(ofType: .deviceActiveThisWeek)
+            eventEmitter.sendEvent(ofType: .deviceActiveThisMonth)
                   
             return
         }
         
-        if let userActiveTodayDate = Int(userActiveTodayDateString), now.getStartOfDay() != userActiveTodayDate {
-            PiesLogger.shared.logDebug(message: "Sending active user event for Today.")
-            keychain.set("\(now.getStartOfDay())", forKey: KeychainKey.userActiveTodayDate)
-            eventEmitter.sendEvent(ofType: .userActiveToday)
+        if let deviceActiveTodayDate = Int(deviceActiveTodayDateString), now.getStartOfDay() != deviceActiveTodayDate {
+            PiesLogger.shared.logDebug(message: "Sending active device event for Today.")
+            userDefaults.set("\(now.getStartOfDay())", forKey: PiesKey.deviceActiveTodayDate)
+            eventEmitter.sendEvent(ofType: .deviceActiveToday)
         }
 
-        if let userActiveThisWeekDate = Int(userActiveThisWeekDateString), now.getStartOfWeek() != userActiveThisWeekDate {
-            PiesLogger.shared.logDebug(message: "Sending active user event for This Week.")
-            keychain.set("\(now.getStartOfWeek())", forKey: KeychainKey.userActiveThisWeekDate)
-            eventEmitter.sendEvent(ofType: .userActiveThisWeek)
+        if let deviceActiveThisWeekDate = Int(deviceActiveThisWeekDateString), now.getStartOfWeek() != deviceActiveThisWeekDate {
+            PiesLogger.shared.logDebug(message: "Sending active device event for This Week.")
+            userDefaults.set("\(now.getStartOfWeek())", forKey: PiesKey.deviceActiveThisWeekDate)
+            eventEmitter.sendEvent(ofType: .deviceActiveThisWeek)
         }
 
-        if let userActiveThisMonthDate = Int(userActiveThisMonthDateString), now.getStartOfMonth() != userActiveThisMonthDate {
-            PiesLogger.shared.logDebug(message: "Sending active user event for This Month.")
-            keychain.set("\(now.getStartOfMonth())", forKey: KeychainKey.userActiveThisMonthDate)
-            eventEmitter.sendEvent(ofType: .userActiveThisMonth)
+        if let deviceActiveThisMonthDate = Int(deviceActiveThisMonthDateString), now.getStartOfMonth() != deviceActiveThisMonthDate {
+            PiesLogger.shared.logDebug(message: "Sending active device event for This Month.")
+            userDefaults.set("\(now.getStartOfMonth())", forKey: PiesKey.deviceActiveThisMonthDate)
+            eventEmitter.sendEvent(ofType: .deviceActiveThisMonth)
         }
         
     }
