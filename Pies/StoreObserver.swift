@@ -20,6 +20,18 @@ final class StoreObserver: NSObject {
     
     private var eventEmitter: EventEmitter
     
+    private var isSandboxOrSimulator: Bool {
+        let isSandbox = Bundle.main.appStoreReceiptURL?.lastPathComponent == "sandboxReceipt"
+
+        #if targetEnvironment(simulator)
+            let isSimulator = true
+        #else
+            let isSimulator = false
+        #endif
+
+        return isSandbox || isSimulator
+    }
+    
     init(userDefaults: UserDefaults, useEmulator: Bool = false) {
         self.userDefaults = userDefaults
         self.useEmulator = useEmulator
@@ -115,6 +127,8 @@ extension StoreObserver: SKPaymentTransactionObserver {
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
     
+        guard !isSandboxOrSimulator else { return }
+        
         for transaction in transactions {
             guard transaction.transactionState == .purchased else { continue }
             self.pendingTransactionsToTrack.append(transaction)
@@ -129,6 +143,9 @@ extension StoreObserver: SKPaymentTransactionObserver {
 extension StoreObserver: SKProductsRequestDelegate {
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        
+        guard !isSandboxOrSimulator else { return }
+        
         DispatchQueue.main.async {
             for product in response.products {
                 self.products[product.productIdentifier] = product
