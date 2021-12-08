@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class EventBuilder {
     
@@ -38,8 +39,18 @@ final class EventBuilder {
         var event: [String: Any] = [
             APIField.timestamp(): Date().timeIntervalSince1970,
             APIField.eventType(): eventType.rawValue,
-            APIField.deviceId(): deviceId
+            APIField.deviceId(): deviceId,
+            APIField.deviceType(): UIDevice.modelIdentifier,
+            APIField.appVersion(): String.applicationVersion,
+            APIField.frameworkVersion(): String.frameworkVersion,
+            APIField.osVersion(): String.osVersion,
+            APIField.locale(): NSLocale.current.identifier
+            
         ]
+        
+        if let regionCode = NSLocale.current.regionCode {
+            event[APIField.regionCode()] = regionCode
+        }
         
         if let userInfo = userInfo {
             for (key, value) in userInfo {
@@ -49,5 +60,7 @@ final class EventBuilder {
         
         return event
     }
+    
+   
     
 }

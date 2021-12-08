@@ -8,12 +8,18 @@
 import Foundation
 
 enum APIField: String {
-    case appId
     case apiKey
-    case event
-    case timestamp
-    case eventType
+    case appId
+    case appVersion
     case deviceId
+    case deviceType
+    case event
+    case eventType
+    case frameworkVersion
+    case locale
+    case osVersion
+    case regionCode
+    case timestamp
     
     func callAsFunction() -> String {
         return self.rawValue
