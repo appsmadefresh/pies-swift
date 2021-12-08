@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E1192B682761456D00C72C77 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1192B672761456D00C72C77 /* UIDevice+Extension.swift */; };
 		E1192B6C2761460F00C72C77 /* String+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1192B6B2761460F00C72C77 /* String+Version.swift */; };
+		E1192B6E27614AC000C72C77 /* EventField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1192B6D27614AC000C72C77 /* EventField.swift */; };
 		E14EFE30272869680075D4AB /* StoreObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14EFE2F272869680075D4AB /* StoreObserver.swift */; };
 		E14EFE3427287DDD0075D4AB /* ProductPriceFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14EFE3327287DDD0075D4AB /* ProductPriceFormatter.swift */; };
 		E170EA39270E4040007B672B /* Pies.docc in Sources */ = {isa = PBXBuildFile; fileRef = E170EA38270E4040007B672B /* Pies.docc */; };
@@ -60,6 +61,7 @@
 /* Begin PBXFileReference section */
 		E1192B672761456D00C72C77 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		E1192B6B2761460F00C72C77 /* String+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Version.swift"; sourceTree = "<group>"; };
+		E1192B6D27614AC000C72C77 /* EventField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventField.swift; sourceTree = "<group>"; };
 		E14EFE2F272869680075D4AB /* StoreObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreObserver.swift; sourceTree = "<group>"; };
 		E14EFE3327287DDD0075D4AB /* ProductPriceFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPriceFormatter.swift; sourceTree = "<group>"; };
 		E170EA34270E4040007B672B /* Pies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +135,7 @@
 				E1B3B54727110E9000C76A29 /* PiesManager.swift */,
 				E1B3B5442711097B00C76A29 /* API */,
 				E170EA4E270E414E007B672B /* EventType.swift */,
+				E1192B6D27614AC000C72C77 /* EventField.swift */,
 				E19106CB273C6C1300F2E779 /* EventCache.swift */,
 				E19106CF273C81B300F2E779 /* EventBuilder.swift */,
 				E19106D3273C8FA900F2E779 /* EventEmitter.swift */,
@@ -341,6 +344,7 @@
 				E170EA4F270E414E007B672B /* EventType.swift in Sources */,
 				E170EA39270E4040007B672B /* Pies.docc in Sources */,
 				E1B3B5432710FB6600C76A29 /* APIBuilder.swift in Sources */,
+				E1192B6E27614AC000C72C77 /* EventField.swift in Sources */,
 				E1D5276627162E3B0085B5CA /* PiesLogLevel.swift in Sources */,
 				E1B3B54E271110F100C76A29 /* Pies.swift in Sources */,
 			);

@@ -37,19 +37,18 @@ final class EventBuilder {
     static func event(eventType: EventType, deviceId: String, userInfo: [String: Any]?) -> [String: Any] {
         
         var event: [String: Any] = [
-            APIField.timestamp(): Date().timeIntervalSince1970,
-            APIField.eventType(): eventType.rawValue,
-            APIField.deviceId(): deviceId,
-            APIField.deviceType(): UIDevice.modelIdentifier,
-            APIField.appVersion(): String.applicationVersion,
-            APIField.frameworkVersion(): String.frameworkVersion,
-            APIField.osVersion(): String.osVersion,
-            APIField.locale(): NSLocale.current.identifier
-            
+            EventField.timestamp(): Date().timeIntervalSince1970,
+            EventField.eventType(): eventType.rawValue,
+            EventField.deviceId(): deviceId,
+            EventField.deviceType(): UIDevice.modelIdentifier,
+            EventField.appVersion(): String.applicationVersion,
+            EventField.frameworkVersion(): String.frameworkVersion,
+            EventField.osVersion(): String.osVersion,
+            EventField.locale(): NSLocale.current.identifier
         ]
         
         if let regionCode = NSLocale.current.regionCode {
-            event[APIField.regionCode()] = regionCode
+            event[EventField.regionCode()] = regionCode
         }
         
         if let userInfo = userInfo {
