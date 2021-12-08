@@ -19,6 +19,12 @@ final class PiesManager {
         return UserDefaults.pies.string(forKey: PiesKey.deviceId)
     }
     
+    private var keychain: KeychainSwift = {
+        let keychain = KeychainSwift()
+        keychain.synchronizable = true
+        return keychain
+    }()
+    
     static var useEmulator = false
     
     static private let lastAppBackgroundTimestampKey = "last-app-background-timestamp"
@@ -99,7 +105,17 @@ final class PiesManager {
         let now = Date()
         if now.timeIntervalSince1970 - installed.timeIntervalSince1970 <= 86400 {
             // Send new install event if within 24 hours of actual app installation.
-            eventEmitter.sendEvent(ofType: .newInstall)
+            
+            // Also check if this is the first install or not
+            if keychain.get(KeychainKey.firstInstallDate) == nil {
+                keychain.set("\(installed.timeIntervalSince1970)", forKey: KeychainKey.firstInstallDate)
+                eventEmitter.sendEvent(ofType: .newInstall, userInfo: [EventField.isFirstInstall(): true])
+                
+            } else {
+                eventEmitter.sendEvent(ofType: .newInstall)
+            }
+            
+            
         }
     }
     

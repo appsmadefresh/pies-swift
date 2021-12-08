@@ -24,7 +24,7 @@ final class EventEmitter {
         let event: [String: Any]
         switch eventType {
         case .newInstall:
-            event = EventBuilder.newInstall(deviceId: deviceId)
+            event = EventBuilder.newInstall(deviceId: deviceId, userInfo: userInfo)
         case .sessionStart:
             event = EventBuilder.sessionStart(deviceId: deviceId)
         case .sessionEnd:

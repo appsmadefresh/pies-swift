@@ -10,8 +10,8 @@ import UIKit
 
 final class EventBuilder {
     
-    static func newInstall(deviceId: String) -> [String: Any] {
-        return event(eventType: .newInstall, deviceId: deviceId, userInfo: nil)
+    static func newInstall(deviceId: String, userInfo: [String: Any]? = nil) -> [String: Any] {
+        return event(eventType: .newInstall, deviceId: deviceId, userInfo: userInfo)
     }
     
     static func sessionStart(deviceId: String) -> [String: Any] {

@@ -13,6 +13,7 @@ enum EventField: String {
     case deviceType
     case eventType
     case frameworkVersion
+    case isFirstInstall
     case locale
     case osVersion
     case regionCode
