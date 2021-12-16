@@ -166,7 +166,6 @@
 				E14EFE3327287DDD0075D4AB /* ProductPriceFormatter.swift */,
 				E171D5F5273202EE00FA1730 /* UserDefaults+Pies.swift */,
 				E1732EB72746DE7800BE0D25 /* Date+Extension.swift */,
-				E1732EBB2746DEA900BE0D25 /* DateExtensionTests.swift */,
 				E1192B6B2761460F00C72C77 /* String+Version.swift */,
 				E1192B672761456D00C72C77 /* UIDevice+Extension.swift */,
 				E170EA37270E4040007B672B /* Pies.h */,
@@ -178,6 +177,7 @@
 		E170EA42270E4040007B672B /* PiesTests */ = {
 			isa = PBXGroup;
 			children = (
+				E1732EBB2746DEA900BE0D25 /* DateExtensionTests.swift */,
 				E170EA43270E4040007B672B /* PiesTests.swift */,
 			);
 			path = PiesTests;
