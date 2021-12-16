@@ -84,9 +84,12 @@ final class StoreObserver: NSObject {
             purchaseInfo["transactionDate"] = transactionDate.timeIntervalSince1970
         }
         
-        if let paymentDiscount = transaction.payment.paymentDiscount {
-            purchaseInfo["paymentDiscountIdentifier"] = paymentDiscount.identifier
+        if #available(iOS 12.2, *) {
+            if let paymentDiscount = transaction.payment.paymentDiscount {
+                purchaseInfo["paymentDiscountIdentifier"] = paymentDiscount.identifier
+            }
         }
+        
         
         if let product = products[transaction.payment.productIdentifier] {
             
