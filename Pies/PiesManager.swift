@@ -53,7 +53,7 @@ final class PiesManager {
         
         SKPaymentQueue.default().add(storeObserver)
         
-        PiesLogger.shared.logInfo(message: "Initialized.")
+        PiesLogger.shared.logInfo(message: "Initialized Pies v\(String.frameworkVersion)")
     }
     
     func startListening() {
