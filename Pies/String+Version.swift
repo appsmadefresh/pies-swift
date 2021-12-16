@@ -19,7 +19,7 @@ extension String {
     }
     
     static var frameworkVersion: String {
-        guard let infoDictionary = Bundle(for: Pies.self).infoDictionary,
+        guard let infoDictionary = Bundle(for: PiesManager.self).infoDictionary,
               let version = infoDictionary["CFBundleShortVersionString"] as? String else {
             return ""
         }
