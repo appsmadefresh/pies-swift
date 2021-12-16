@@ -19,11 +19,7 @@ extension String {
     }
     
     static var frameworkVersion: String {
-        guard let infoDictionary = Bundle(for: PiesManager.self).infoDictionary,
-              let version = infoDictionary["CFBundleShortVersionString"] as? String else {
-            return ""
-        }
-        return version
+        return "0.1.3"
     }
     
     static var osVersion: String {
