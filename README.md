@@ -2,8 +2,7 @@
 Realtime Mobile Analytics
 
 ## Build Instructions
-
-We use **xcodebuild** to generate archives and create a framework for release distribution.
+The preferred method to build and distribute the framework is **Swift Package Manager (SPM)**. However, if you cannot use SPM, then you can manually build the framework using  **xcodebuild** to generate the archives and create a framework for release distribution.
 
 Open the **Terminal** and navigate to the project directory:
 ```
