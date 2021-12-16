@@ -20,11 +20,10 @@ extension String {
     
     static var frameworkVersion: String {
         guard let infoDictionary = Bundle(for: Pies.self).infoDictionary,
-              let version = infoDictionary["CFBundleShortVersionString"] as? String,
-              let build = infoDictionary["CFBundleVersion"] as? String else {
+              let version = infoDictionary["CFBundleShortVersionString"] as? String else {
             return ""
         }
-        return "\(version) (\(build))"
+        return version
     }
     
     static var osVersion: String {
