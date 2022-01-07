@@ -19,7 +19,7 @@ extension String {
     }
     
     static var frameworkVersion: String {
-        return "0.1.3"
+        return "0.1.4"
     }
     
     static var osVersion: String {

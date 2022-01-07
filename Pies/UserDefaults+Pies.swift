@@ -15,6 +15,10 @@ enum PiesKey {
     static let deviceActiveTodayDate = "device-active-today-date"
     static let deviceActiveThisWeekDate = "device-active-this-week-date"
     static let deviceActiveThisMonthDate = "device-active-this-month-date"
+    static let stopTrackingUntil = "stop-tracking-until"
+    static let stopTrackingReason = "stop-tracking-reason"
+    static let trackingStopped = "tracking-stopped"
+    static let stopTrackingCacheEnabled = "stop-tracking-cache-enabled"
 }
 
 extension UserDefaults {

@@ -126,8 +126,6 @@ final class PiesManager {
         guard let deviceActiveTodayDateString = userDefaults.string(forKey: PiesKey.deviceActiveTodayDate),
               let deviceActiveThisWeekDateString = userDefaults.string(forKey: PiesKey.deviceActiveThisWeekDate),
               let deviceActiveThisMonthDateString = userDefaults.string(forKey: PiesKey.deviceActiveThisMonthDate) else {
-            
-            PiesLogger.shared.logDebug(message: "Sending active device events for Today, This Week and This Month.")
                   
             userDefaults.set("\(now.getStartOfDay())", forKey: PiesKey.deviceActiveTodayDate)
             userDefaults.set("\(now.getStartOfWeek())", forKey: PiesKey.deviceActiveThisWeekDate)
@@ -141,19 +139,16 @@ final class PiesManager {
         }
         
         if let deviceActiveTodayDate = Int(deviceActiveTodayDateString), now.getStartOfDay() != deviceActiveTodayDate {
-            PiesLogger.shared.logDebug(message: "Sending active device event for Today.")
             userDefaults.set("\(now.getStartOfDay())", forKey: PiesKey.deviceActiveTodayDate)
             eventEmitter.sendEvent(ofType: .deviceActiveToday)
         }
 
         if let deviceActiveThisWeekDate = Int(deviceActiveThisWeekDateString), now.getStartOfWeek() != deviceActiveThisWeekDate {
-            PiesLogger.shared.logDebug(message: "Sending active device event for This Week.")
             userDefaults.set("\(now.getStartOfWeek())", forKey: PiesKey.deviceActiveThisWeekDate)
             eventEmitter.sendEvent(ofType: .deviceActiveThisWeek)
         }
 
         if let deviceActiveThisMonthDate = Int(deviceActiveThisMonthDateString), now.getStartOfMonth() != deviceActiveThisMonthDate {
-            PiesLogger.shared.logDebug(message: "Sending active device event for This Month.")
             userDefaults.set("\(now.getStartOfMonth())", forKey: PiesKey.deviceActiveThisMonthDate)
             eventEmitter.sendEvent(ofType: .deviceActiveThisMonth)
         }
