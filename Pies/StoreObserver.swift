@@ -97,6 +97,14 @@ final class StoreObserver: NSObject {
             
             purchaseInfo["price"] = product.formattedPrice
             
+            if let currencyCode = product.priceLocale.currencyCode {
+                purchaseInfo["currencyCode"] = currencyCode
+            }
+            
+            if let currencySymbol = product.priceLocale.currencySymbol {
+                purchaseInfo["currencySymbol"] = currencySymbol
+            }
+            
             if let regionCode = product.priceLocale.regionCode {
                 purchaseInfo["region"] = regionCode
             }
