@@ -12,7 +12,7 @@ import Pies
 struct PiesDemo_SwiftUIApp: App {
     
     init() {
-        Pies.configure(appId: "-MmtM0u4QPsyRhTC8Puh", apiKey: "bc2e9820-0456-4c61-b785-cbf82e3c29d4")
+        Pies.configure(appId: "YOUR APP ID", apiKey: "YOUR API KEY")
     }
     
     var body: some Scene {

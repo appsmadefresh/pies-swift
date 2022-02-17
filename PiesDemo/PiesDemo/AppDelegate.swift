@@ -12,7 +12,7 @@ import Pies
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        Pies.configure(appId: "1234", apiKey: "123456789")
+        Pies.configure(appId: "YOUR APP ID", apiKey: "YOUR API KEY")
         return true
     }
 
