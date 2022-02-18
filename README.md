@@ -22,21 +22,14 @@ Pies Swift is a realtime mobile analytics framework for iOS. With only two lines
 
 # Quick Start
 
-## Step 1
-Download [Pies](https://apps.apple.com/us/app/pies-mobile-analytics/id1592726335) from the App Store and sign up. You can get started with a free account.
-
-## Step 2
-In the Pies app, add your app and receive your **appId** and **apiKey** in an email.
-
-## Step 3
-Add **pies-swift** to your project. Swift Package Manager (SPM) is the preferred dependency manager for Pies.
-
-## Step 4
-Configure your app to use Pies. Please follow the appropriate instructions below for UIKit or SwiftUI.
+1. Download [Pies](https://apps.apple.com/us/app/pies-mobile-analytics/id1592726335) from the App Store and sign up. You can get started with a free account.
+2. In the Pies app, add your app and receive your **appId** and **apiKey** in an email.
+3. Add **pies-swift** to your project. Swift Package Manager (SPM) is the preferred dependency manager for Pies.
+4. Configure your app to use Pies. Please follow the appropriate instructions below for UIKit or SwiftUI.
 
 ### UIKit
 
-Open your **AppDelegatet** and import the Pies framework:
+Open your **AppDelegate** and import the Pies framework:
 ```
 import Pies
 ```
@@ -57,25 +50,16 @@ Configure Pies by adding the following line to your **App.init()** method:
 Pies.configure(appId: "<YOUR APP ID>", apiKey: "<YOUR API KEY>")
 ```
 
-## Step 5
-Run your app and view the metrics in the Pies app.
+For a complete example, please checkout the UIKit and SwiftUI demo apps in this repository.
 
-Please checkout the UIKit and SwiftUI demo apps in this repository.
+5. Run your app and view the metrics in the Pies app.
 
 # Manual Install
 
-## Step 1
-Download the Pies Framework from here:
-https://firebasestorage.googleapis.com/v0/b/pies-d01b8.appspot.com/o/Pies.xcframework.zip?alt=media&token=5a19ca9f-c27a-4304-8306-937805f588b0
-
-## Step 2
-Un-zip the Pies.xcframework.zip file and add the Pies.xcframework to your Xcode project.
-
-## Step 3
-In Xcode, open the **General** tab for your target. Then check the settings under **Frameworks, Libraries, and Embedded Content**. Pies.xcframework should be set to "Embed & Sign".
-
-## Step 4
-Follow the Quick Start instructions in Step 4.
+1. Download the Pies Framework from [here](https://firebasestorage.googleapis.com/v0/b/pies-d01b8.appspot.com/o/Pies.xcframework.zip?alt=media&token=5a19ca9f-c27a-4304-8306-937805f588b0).
+2. Un-zip the Pies.xcframework.zip file and add the Pies.xcframework to your Xcode project.
+3. In Xcode, open the **General** tab for your target. Then check the settings under **Frameworks, Libraries, and Embedded Content**. Pies.xcframework should be set to "Embed & Sign".
+4. Follow the Quick Start instructions in Step 4.
 
 # FAQ
 **Do I need to request the user's permission through the [App Tracking Transparency](https://developer.apple.com/documentation/apptrackingtransparency) framework to use Pies?**
