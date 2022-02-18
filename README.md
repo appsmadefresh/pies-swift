@@ -40,7 +40,7 @@ Pies.configure(appId: "<YOUR APP ID>", apiKey: "<YOUR API KEY>")
 ```
 
 ### SwiftUI
-Open the file containing your project's **App**, and add import the Pies framework:
+Open the file containing your project's **App**, and import the Pies framework:
 ```
 import Pies
 ```
