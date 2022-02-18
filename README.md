@@ -56,7 +56,7 @@ For a complete example, please checkout the UIKit and SwiftUI demo apps in this 
 
 # Manual Install
 
-1. Download the Pies Framework from [here](https://firebasestorage.googleapis.com/v0/b/pies-d01b8.appspot.com/o/Pies.xcframework.zip?alt=media&token=5a19ca9f-c27a-4304-8306-937805f588b0).
+1. Download the Pies Framework from [here](https://firebasestorage.googleapis.com/v0/b/pies-d01b8.appspot.com/o/v0.1.5%2FPies.xcframework.zip?alt=media&token=b4137327-e5dc-4f7f-b0ad-08c35bdb22eb).
 2. Un-zip the Pies.xcframework.zip file and add the Pies.xcframework to your Xcode project.
 3. In Xcode, open the **General** tab for your target. Then check the settings under **Frameworks, Libraries, and Embedded Content**. Pies.xcframework should be set to "Embed & Sign".
 4. Follow the Quick Start instructions in Step 4.
